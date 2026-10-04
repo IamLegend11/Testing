@@ -9,12 +9,12 @@ jobs:
       fail-fast: false
       matrix:
         oss: [ubuntu-latest,windows-latest]
-        node: [14.x,22.x]
+        node-version: [14.x,22.x]
     runs-on: ${{ matrix.oss }}
     steps:
     - uses: actions/setup-node@v3.6.0
       with:
-        version: ${{matrix.node}}
+        node-version: ${{matrix.node-version}}
     - name: Testing shell
       run: echo "Meow is the best"
     - name: Checking npm
