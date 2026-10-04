@@ -1,0 +1,17 @@
+name: Medo_is_testing
+
+on:
+  push:
+
+jobs:
+  Meow:
+    runs-on: ubuntu-latest
+    name: medo
+    needs: [lol]
+    steps:
+      - run: echo "This will be the 2nd line"
+  lol:
+    runs-on: ubuntu-latest
+    name: LOL
+    steps:
+      - run: echo "I'm just testing here 1"
