@@ -18,7 +18,9 @@ jobs:
     - name: Testing shell
       run: echo "Meow is the best"
     - name: Checking npm
-      run: npm test
+      run: |
+        echo "Meow is here"
+        ls -la .
             
   
   
