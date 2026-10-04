@@ -1,0 +1,14 @@
+name: Pull-test
+
+on:
+  pull_request:
+    branches:
+      - 'dev/**'
+
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Meow is here"
+      - run: ls -la
+
