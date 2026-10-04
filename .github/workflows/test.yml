@@ -22,6 +22,7 @@ jobs:
     #  run: |
     #    echo "Meow is here"
     #    ls -la .
+    - run: npm ci
     - name: Testing NPM
       run: npm test
             
