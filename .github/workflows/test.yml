@@ -12,6 +12,7 @@ jobs:
         node-version: [24.x,22.x]
     runs-on: ${{ matrix.oss }}
     steps:
+    - uses: actions/checkout@v4
     - uses: actions/setup-node@v6.5.0
       with:
         node-version: ${{matrix.node-version}}
