@@ -26,6 +26,10 @@ jobs:
         env:
           MY_NAME: AHMED
         run: echo "My name is $MY_NAME"
+      - name: SetUp NodeJS
+        uses: actions/setup-node@v6.5.0
+        with:
+          node-version: 22.x
           
      # - name: checking file exists
      #  run: |
