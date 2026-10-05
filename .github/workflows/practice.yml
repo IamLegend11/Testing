@@ -49,18 +49,16 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
-      - name: Setting up node
-        uses: actions/setup-node@v6.5.0
-        with:
-          node-version: 22.x
-      - name: Installing Depend
+      - name: Making a docker
         run: |
-          npm install
-          if [ $? -eq 0 ];then
-            echo "Tesing successfully done"
-          else
-            echo "An Error happened"
-          fi
+          touch dockerfile
+          files=package*json
+          echo -e "FROM node:22\nWORKDIR /app\nCOPY $files .\nRUN npm install\nCOPY . .\nCMD ["npm","test"]" >> dockerfile
+      - name: Building Image
+        run: |
+          docker build --tag first-test:v1 .
+          docker images
+
           
      # - name: checking file exists
      #  run: |
