@@ -58,6 +58,11 @@ jobs:
         run: |
           docker build --tag first-test:v1 .
           docker images
+      - name: Logging to DockerHub
+        uses: docker/build-push-action@v7.4.0
+        with:
+          username: ${{ secrets.DOCK_USERNAME }}
+          password: ${{ secrets.DOCK_PASS }}
 
           
      # - name: checking file exists
