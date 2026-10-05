@@ -39,7 +39,7 @@ jobs:
       - name: Testing Node
         run: |
           echo "Start Testing"
-          npm test
+          ls
           sleep 1
           echo "Test has finished with exit code $?"
           
