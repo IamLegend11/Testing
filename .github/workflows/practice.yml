@@ -50,14 +50,13 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
       - name: Logging to DockerHub
-      #  uses: docker/build-push-action@v7.4.0
         uses: docker/login-action@v4.6.0
         with:
           username: ${{ secrets.DOCK_USERNAME }}
           password: ${{ secrets.DOCK_PASS }}
       - name: Building Image
         run: |
-          docker build --tag first-test:v1 .
+          docker build --tag ${{ secrets.DOCK_USERNAME }}/first-test:v1 .
           docker images
       - name: Pushing Image to DockerHub
         run: docker push ${{ secrets.DOCK_USERNAME }}/first-test:v1
