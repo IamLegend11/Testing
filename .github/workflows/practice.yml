@@ -22,6 +22,10 @@ jobs:
           pwd
           touch kali.txt && echo "Hi there from Kali.txt" >> kali.txt
           ls -la
+      - name: Creating ENV Variable
+        env:
+          MY_NAME: AHMED
+        run: echo "My name is $MY_NAME"
           
      # - name: checking file exists
      #  run: |
