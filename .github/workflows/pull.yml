@@ -9,14 +9,26 @@ jobs:
     steps:
       - name: Getting My Repo
         uses: actions/checkout@v4
-      - name: Check my local Repo content
-        run: ls -la
-      - name: checking file exists
-        run: |
-          echo "Start searching"
-          my_file=package.json
-          if [ -f $my_file ];then
-            echo "The $my_file is existing"
-          else
-            echo "File doesn't exist"
-          fi
+      - name: System Info
+        run: | 
+          pwd
+          ls -la
+          echo "Hello from GitHub Actions"
+      - name: Creating New DIR
+        run: mkdir practice
+      - name: Getting into new DIR and create file
+        working-directory: practice
+        run: | 
+          pwd
+          touch kali.txt && echo "Hi there from Kali.txt" >> kali.txt
+          ls -la
+          
+     # - name: checking file exists
+     #  run: |
+     #     echo "Start searching"
+     #     my_file=package.json
+     #     if [ -f "$my_file" ];then
+     #      echo "The $my_file is existing"
+     #     else
+     #       echo "File doesn't exist"
+     #     fi
