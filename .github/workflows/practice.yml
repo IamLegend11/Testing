@@ -34,6 +34,14 @@ jobs:
         run: |
           node --version
           npm --version
+      - name: Install Dependencies
+        run: npm install
+      - name: Testing Node
+        run: |
+          echo "Start Testing"
+          npm test
+          sleep 1
+          echo "Test has finished with exit code $?"
           
      # - name: checking file exists
      #  run: |
