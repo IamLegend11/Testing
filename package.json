@@ -4,7 +4,7 @@
   "description": "",
   "main": "meow.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node meow.js"
   },
   "repository": {
     "type": "git",
