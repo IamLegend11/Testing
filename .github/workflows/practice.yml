@@ -2,6 +2,9 @@ name: Testing Pipeline
 
 on:
   workflow_dispatch:
+env:
+  IMAGE_NAME: first-test
+  IMAGE_TAG: v1
 
 jobs:
   My_setup:
@@ -56,10 +59,10 @@ jobs:
           password: ${{ secrets.DOCK_PASS }}
       - name: Building Image
         run: |
-          docker build --tag ${{ secrets.DOCK_USERNAME }}/first-test:v1 .
+          docker build --tag ${{ secrets.DOCK_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} .
           docker images
       - name: Pushing Image to DockerHub
-        run: docker push ${{ secrets.DOCK_USERNAME }}/first-test:v1
+        run: docker push ${{ secrets.DOCK_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
         
   Deploy:
     runs-on: ubuntu-latest
@@ -71,8 +74,12 @@ jobs:
           host: 3.81.211.218
           username: ec2-user
           key: ${{ secrets.EC2_SSH_KEY }}
-          script: docker pull ${{ secrets.DOCK_USERNAME }}/first-test:v1
-          
+          script: |
+            docker pull ${{ secrets.DOCK_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+            docker run -d \
+              --name My-first-container \
+              -p 3000:3000 \
+              ${{ secrets.DOCK_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
      # - name: checking file exists
      #  run: |
      #     echo "Start searching"
