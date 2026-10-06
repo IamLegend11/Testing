@@ -71,7 +71,7 @@ jobs:
       - name: Connecting to EC2
         uses: appleboy/ssh-action@v1
         with:
-          host: 16.171.28.127
+          host: ${{ secrets.SERVER_IP }}
           username: ec2-user
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
@@ -82,6 +82,10 @@ jobs:
               --name My-first-container \
               -p 3000:3000 \
               ${{ secrets.DOCK_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+      - name: Checking connection       
+        run: |
+           sleep 3
+           curl -sL http://${{ secrets.SERVER_IP }}:3000
      # - name: checking file exists
      #  run: |
      #     echo "Start searching"
