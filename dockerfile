@@ -12,7 +12,7 @@ EXPOSE 3000
 
 CMD ["npm", "test"]
 
-CMD ["npm", "open"]
+CMD ["npm", "run" ,"open"]
 
 
 
