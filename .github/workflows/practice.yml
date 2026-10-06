@@ -71,7 +71,9 @@ jobs:
           host: 3.81.211.218
           username: ec2-user
           key: ${{ secrets.EC2_SSH_KEY }}
-          script: docker --version
+          script: |
+            docker --version
+            echo "This is Meow typing from the inside of the github actions to you on the instance :>" >> new.txt
           
      # - name: checking file exists
      #  run: |
