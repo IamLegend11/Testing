@@ -61,7 +61,17 @@ jobs:
       - name: Pushing Image to DockerHub
         run: docker push ${{ secrets.DOCK_USERNAME }}/first-test:v1
         
-
+  Deploy:
+    runs-on: ubuntu-latest
+    needs: Build_Stage
+    steps:
+      - name: Connecting to EC2
+        uses: appleboy/ssh-action@v1
+        with:
+          host: 3.81.211.218
+          username: ec2-user
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: docker --version
           
      # - name: checking file exists
      #  run: |
