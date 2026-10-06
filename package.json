@@ -4,7 +4,8 @@
   "description": "",
   "main": "meow.js",
   "scripts": {
-    "test": "echo \"Tests passed successfully!\""
+    "test": "echo \"Tests passed successfully!\"",
+    "open": "node meow.js"
   },
   "repository": {
     "type": "git",
