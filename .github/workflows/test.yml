@@ -1,17 +1,32 @@
 name: Medo_is_testing
 
 on:
-  push:
+  workflow_dispatch:
 
 jobs:
-  Meow:
-    runs-on: ubuntu-latest
-    name: medo
-    needs: [lol]
+  run_node:
+    strategy:
+      fail-fast: false
+      matrix:
+        oss: [ubuntu-latest,windows-latest]
+        node-version: [24.x,22.x]
+    runs-on: ${{ matrix.oss }}
     steps:
-      - run: echo "This will be the 2nd line"
-  lol:
-    runs-on: ubuntu-latest
-    name: LOL
-    steps:
-      - run: echo "I'm just testing here 1"
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v6.5.0
+      with:
+        node-version: ${{matrix.node-version}}
+    - name: Testing shell
+      run: echo "Meow is the best"
+    #- name: Checking npm
+    #  run: |
+    #    echo "Meow is here"
+    #    ls -la .
+    - name: Create package.json
+      run: |
+        echo '{"scripts":{"test":"echo Tests passed"}}' > package.json
+
+    - name: Run tests
+      run: npm test
+  
+  
