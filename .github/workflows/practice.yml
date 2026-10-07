@@ -1,6 +1,8 @@
 name: Testing Pipeline
 
 on:
+  schedule:
+    - cron: 0 10 7 10 *
   workflow_dispatch:
 env:
   IMAGE_NAME: first-test
