@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 env:
   IMAGE_NAME: first-test
-  IMAGE_TAG: v1
+  IMAGE_TAG: ${{ github.sha }}
 
 jobs:
   My_setup:
@@ -76,8 +76,8 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             docker pull ${{ secrets.DOCK_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
-            docker stop My-first-container
-            docker rm My-first-container
+            docker stop My-first-container || true
+            docker rm My-first-container || true
             docker run -d \
               --name My-first-container \
               -p 3000:3000 \
