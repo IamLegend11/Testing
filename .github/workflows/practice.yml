@@ -80,9 +80,9 @@ jobs:
             docker pull ${{ secrets.DOCK_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
             docker stop My-first-container || true
             docker rm My-first-container || true
-            docker run -d \
-              --name My-first-container \
-              -p 3000:3000 \
+            docker run -d \\
+              --name My-first-container \\
+              -p 3000:3000 \\
               ${{ secrets.DOCK_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
       - name: Checking connection       
         run: |
@@ -97,3 +97,4 @@ jobs:
      #     else
      #       echo "File doesn't exist"
      #     fi
+# This is a new line added and modified by ChatGPT through following the instructions of Ahmed
